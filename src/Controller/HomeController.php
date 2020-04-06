@@ -26,4 +26,14 @@ class HomeController extends AbstractController
             'controller_name' => 'Page de contact',
         ]);
     }
+
+    /**
+     * @Route("/home/presentation", name="presentation")
+     */
+    public function presentation()
+    {
+        return $this->render('home/presentation.html.twig', [
+            'controller_name' => 'Qui sommes-nous ?',
+        ]);
+    }
 }
