@@ -14,6 +14,30 @@
 			<p class="lead">
 				Voici la liste de tous nos articles
 			</p>
+
+
+        {% for article in articles %}
+              <div class="un-article jumbotron">
+                <h3>
+                    {{ article.title }}
+                </h3>
+
+                <p> 
+                    {{ article.introduction }}
+                </p>
+
+                <p>
+                    {{ article.price }} € !
+                </p>
+
+            </div>
+
+        {% endfor %}
+          
+
+
+
+
 		</div>
 	</div>
 
