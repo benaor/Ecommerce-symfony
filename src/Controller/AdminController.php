@@ -2,9 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\Article;
+use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class AdminController extends AbstractController
 {
@@ -22,10 +27,11 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/login", name="admin_login")
      */
-    public function adminLogin()
+    public function adminLogin(AuthenticationUtils $auth)
     {
         return $this->render('admin/login.html.twig', [
             'controller_name' => 'Connexion a l\'espace administrateur',
+            'error' => $error = $auth->getLastAuthenticationError()
         ]);
     }
 
@@ -36,5 +42,24 @@ class AdminController extends AbstractController
     {
     }
 
+    /**
+     * @Route("/admin/new", name="new_article")
+     */
+    public function newArticle(Request $request, EntityManagerInterface $manager)
+    {
+        $article = new Article();
+        $form = $this->createForm(ArticleType::class, $article);
+        $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($article);
+            $manager->flush();
+            return $this->redirectToRoute('admin_tdb');
+        }
+
+        return $this->render('admin/new.html.twig', [
+            'controller_name' => 'Ajouter un article à la boutique',
+            'form_new_article' => $form->createView()
+        ]);
+    }
 }
