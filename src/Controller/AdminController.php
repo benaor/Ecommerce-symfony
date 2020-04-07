@@ -62,4 +62,15 @@ class AdminController extends AbstractController
             'form_new_article' => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("/admin/{id}/delete", name="delete_article")
+     */
+    public function deleteArticle(Article $article, EntityManagerInterface $manager)
+    {
+        $manager->remove($article);
+        $manager->flush();
+        return $this->redirectToRoute('admin_tdb');
+    }
+
 }
