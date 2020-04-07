@@ -17,18 +17,26 @@
 
 
         {% for article in articles %}
-              <div class="un-article jumbotron">
-                <h3>
-                    {{ article.title }}
-                </h3>
+              <div class="un-article jumbotron p-0 row">
 
-                <p> 
-                    {{ article.introduction }}
-                </p>
+                <img src="{{ article.image }}" alt="image article" class="image-preview col-3 p-0" width="285" height="250">
 
-                <p>
-                    {{ article.price }} € !
-                </p>
+                <div class="text-center p-5 d-flex flex-column justify-content-between">
+                    <h3 class="mb-3">
+                        {{ article.title }}
+                    </h3>
+
+                    <p class="mb-3"> 
+                        {{ article.introduction }}
+                    </p>
+
+                    <p class="mb-3">
+                        {{ article.price }} € !
+                    </p>
+
+                    <a href="{{ path('fiche_produit', {'id': article.id }) }}" class="btn w-25 mx-auto btn-primary active" role="button">En savoir plus ?</a>
+
+                </div>
 
             </div>
 

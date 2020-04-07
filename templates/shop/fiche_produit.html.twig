@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ controller_name }}
+{% endblock %}
+
+{% block body %}
+
+	<div class="container-fluid">
+		<div class="container text-center">
+			<div class="jumbotron mt-5">
+				<h1>{{ controller_name }}!</h1>
+			</div>
+
+			<div class="un-article jumbotron text-center">
+
+
+				<h3 class="mb-3">
+					{{ article.title }}
+				</h3>
+
+				<p class="mb-3">
+					{{ article.introduction }}
+				</p>
+
+				<img src="{{ article.image }}" alt="image article" class="image-view col-4 mb-3 p-0" height="523">
+
+
+                <p class="mb-3"> Description complete de l'article : <br>
+                {{ article.description }} </p> 
+
+				<p class="mb-3 text-bold border border-danger rounded p-3 col-3 mx-auto">
+					SON PRIX EST DE : {{ article.price }}€ !
+				</p>
+
+				<a href="#" class="btn mx-auto btn-danger active mb-3" role="button">IL ME LE FAUT !</a>
+
+
+			</div>
+
+
+		</div>
+	</div>
+
+{% endblock %}

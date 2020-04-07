@@ -1,4 +1,7 @@
-footer {
-    position: absolute;
-    bottom: 0;
+.page {
+    min-height: 80vh;
+}
+
+.image-preview {
+    height: 250px;
 }
