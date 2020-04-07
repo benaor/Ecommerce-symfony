@@ -30,11 +30,11 @@
 					<td>{{ article.id }}</td>
 					<td>{{ article.title }}</td>
 					<td>
-						<a href="#" class="btn btn-warning">
+						<a href="{{ path('edit_article', {'id': article.id}) }}" class="btn btn-warning">
 							<i class="fas fa-edit"></i>
 							modifier
 						</a>
-						<a href="#" class="btn btn-danger">
+						<a href="{{ path('delete_article', {'id': article.id}) }}" class="btn btn-danger">
 							<i class="fas fa-trash"></i>
 							Supprimer
 						</a>

@@ -73,4 +73,24 @@ class AdminController extends AbstractController
         return $this->redirectToRoute('admin_tdb');
     }
 
+    
+    /**
+     * @Route("/admin/{id}/edit", name="edit_article")
+     */
+    public function editArticle(Article $article, Request $request, EntityManagerInterface $manager)
+    {
+        $form = $this->createForm(ArticleType::class, $article);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($article);
+            $manager->flush();
+            return $this->redirectToRoute('admin_tdb');
+        }
+
+        return $this->render('admin/edit.html.twig', [
+            'controller_name' => 'Modifier les informations d\'un article',
+            'form_edit_article' => $form->createView()
+        ]);
+    }
 }
