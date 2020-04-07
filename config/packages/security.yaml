@@ -6,14 +6,28 @@ security:
 
     providers:
         users_in_memory: { memory: null }
+        admin_login: 
+            entity:
+                class: App\Entity\Admin
+                property: username
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            anonymous: lazy
-            provider: users_in_memory
+            pattern: ^/
+            anonymous: true
+            provider: admin_login
 
+            form_login:
+                login_path: admin_login
+                check_path: admin_login
+                default_target_path: admin_tdb
+
+            logout:
+                path: admin_logout
+                target: home
+                
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
 
@@ -23,5 +37,6 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }

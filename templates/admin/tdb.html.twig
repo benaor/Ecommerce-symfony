@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ controller_name }} {% endblock %}
+
+{% block body %}
+
+	<div class="container-fluid">
+		<h1 class="my-5 text-center">
+			GESTION DES PRODUITS
+		</h1>
+		<div class="text-center mb-3">
+			<a href="#" class="btn btn-success text-white mb-3">
+				<i class="fas fa-plus"></i>
+				Ajouter un nouveau produit
+			</a>
+		</div>
+	</div>
+
+	<table class="table table-over text-center">
+		<thead class="thead-dark">
+			<tr>
+				<th class="col-1">ID</th>
+				<th class="col-7">Titre</th>
+				<th class="col-4">Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for article in articles %}
+				<tr>
+					<td>{{ article.id }}</td>
+					<td>{{ article.title }}</td>
+					<td>
+						<a href="#" class="btn btn-warning">
+							<i class="fas fa-edit"></i>
+							modifier
+						</a>
+						<a href="#" class="btn btn-danger">
+							<i class="fas fa-trash"></i>
+							Supprimer
+						</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+
+{% endblock %}
