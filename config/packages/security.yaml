@@ -22,7 +22,7 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        main:
+        admin_login:
             pattern: ^/admin
             anonymous: true
             provider: admin_login
@@ -62,4 +62,8 @@ security:
         - { path: ^/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/client/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/client/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/client, roles: ROLE_CLIENT }
+
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_CLIENT

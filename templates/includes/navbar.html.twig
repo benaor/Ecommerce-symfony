@@ -27,15 +27,22 @@
 
 				{% if app.user == null %}
 					<a class="dropdown-item" href="{{ path('admin_login') }}">connexion Admin</a>
+					<a class="dropdown-item" href="{{ path('client_login') }}">connexion Client</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="{{ path('client_register') }}">Inscrivez-vous</a>
 				{% endif %}
 
 				{% if app.user %}
-					<a class="dropdown-item" href="{{ path('admin_logout') }}">deconnexion Admin</a>
 
+					{% if app.user.username == 'admin' %}
+						<a class="dropdown-item" href="{{ path('admin_logout') }}">deconnexion Admin</a>
+					{% endif %}
+
+					{% if app.user.username == 'client' %}
+						<a class="dropdown-item" href="{{ path('client_logout') }}">deconnexion client</a>
+					{% endif %}
 				{% endif %}
 
-
-				
 			</div>
 		</ul>
 	</div>
