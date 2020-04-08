@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ controller_name }} {% endblock %}
+
+{% block body %}
+
+<div class="container-fluid row justify-content-center my-5">
+	<div class="col-6">
+		<h1 class="text-center">
+			{{ controller_name }} 
+		</h1>
+		
+		<form action="#" method="POST">
+
+			<div class="form-group">
+				<label for="username"> USERNAME :</label>
+				<input type="text" required id="username" class="form-control" placeholder="nom Utilisateur" name="_username">
+			</div>
+
+			<div class="form-group">
+				<label for="password"> PASSWORD :</label>
+				<input type="password" required id="password" class="form-control" placeholder="Mot de passe" name="_password">
+			</div>
+
+
+            {% if error %}
+            
+            <div class="alert alert-danger p-3 col-6 mx-auto text-center"> Nom de compte ou mot de passe incorrect ! </div>
+
+            {% endif %}
+            
+
+			<div class="text-center">
+				<button type="submit" class="btn btn-primary">
+					Connexion
+				</button>
+
+		</form>
+	</div>
+</div>
+
+{% endblock %}

@@ -179,7 +179,7 @@ class Client implements UserInterface
 
     public function getUsername()
     {
-        return $this->username;
+        return $this->login;
     }
 
     public function getSalt()
