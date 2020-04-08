@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ClientController!
+{% endblock %}
+
+{% block body %}
+
+	<div class="container p-5 text-center">
+
+		<h1 class="mb-5">
+			{{ controller_name }}
+		</h1>
+
+		<p class="mb-5">
+			Que voulez vous faire ?
+		</p>
+
+		<div class="d-flex row justify-content-between">
+			<button type="button" class="col-3 btn-lg btn btn-primary">Consulter/modifier mes informations</button>
+			<a href="{{ path('shop') }}" class="col-3 btn-lg btn btn-secondary" role="button">Acceder a la boutique</a>
+			<button type="button" class="col-3 btn-lg btn btn-success">Voir mon panier</button>
+		</div>
+
+	</div>
+
+{% endblock %}
