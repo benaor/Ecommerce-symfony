@@ -47,7 +47,7 @@ class ClientController extends AbstractController
     {
     }
 
-        /**
+    /**
      * @Route("/client/register", name="client_register")
      */
     public function clientRegister(Request $request, EntityManagerInterface $manager)
@@ -56,7 +56,7 @@ class ClientController extends AbstractController
         $form = $this->createForm(RegisterType::class, $client);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $encoded = $this->encoder->encodePassword($client, $client->getPassword());
             $client->setPassword($encoded);
             $manager->persist($client);
@@ -67,6 +67,16 @@ class ClientController extends AbstractController
         return $this->render('client/register.html.twig', [
             'controller_name' => 'Inscrivez-vous !',
             'form_register' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/client/donnees", name="donnees_client")
+     */
+    public function donneesClient()
+    {
+        return $this->render('client/donnees.html.twig', [
+            'controller_name' => 'Modifier les infos personnelles',
         ]);
     }
 }
