@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class CartController extends AbstractController
 {
@@ -21,17 +22,17 @@ class CartController extends AbstractController
     /**
      * @Route("/cart/add/{id}", name="cart_add")
      */
-    public function addToCart($id, Request $request)
+    public function addToCart($id, SessionInterface $session)
     {
-        $session = $request->getSession();
         $panier = $session->get('panier', []);
 
-        if(!empty($panier[$id])){
-            $panier[$id] = 1;
-        } else {
+        if (!empty($panier[$id])) {
             $panier[$id]++;
+        } else {
+            $panier[$id] = 1;
         }
-        
+
+        $session->set('panier', $panier);
         $this->redirectToRoute('cart');
     }
 
