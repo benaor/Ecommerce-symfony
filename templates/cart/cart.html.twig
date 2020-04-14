@@ -1,11 +1,67 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Hello CartController!{% endblock %}
-
+{% block title %}Hello CartController!
+{% endblock %}
 {% block body %}
 
-    <h1> {{ controller_name }} </h1>
+	<h1>
+		{{ controller_name }}
+	</h1>
+<div class="container">
+	{% if articlesInCart | length > 0 %}
+		<table class="table">
+			<thead>
+				<tr>
+					<th>produit</th>
+					<th>prix</th>
+					<th>quantité</th>
+					<th>total</th>
+					<th>action ?</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for articleInCart in articlesInCart %}
+				<tr>
+					<td>
+						{{ articleInCart.article.title }}
+					</td>
+					<td>
+						{{ articleInCart.article.price }}
+					</td>
+					<td>
+						{{ articleInCart.quantity }}
+					</td>
+					<td>
+						{{ articleInCart.article.price * articleInCart.quantity }}
+					</td>
+					<td>
+						<a href="{{ path('cart_remove', { 'id': articleInCart.article.id }) }}" class="btn btn-danger btn-sm" role="button">
+							<i class="fas fa-minus"></i>
+						</a>
 
+						<a href="{{ path('cart_add', {'id' : articleInCart.article.id }) }}" class="btn btn-success btn-lg mx-2">
+							<i class="fas fa-cart-plus"></i>
+						</a>
 
+						<a href="{{ path('cart_delete', { 'id': articleInCart.article.id }) }}" class="btn btn-danger btn-sm" role="button">
+							<i class="fas fa-trash"></i>
+						</a>
+					</td>
+				</tr>
+                {% endfor %}
+			</tbody>
+            <tfoot>
+                <tr>
+					<td class="text-right font-weight-bold" colspan="3">total :</td>
+					<td class="font-weight-bold">{{ total }}</td>
+					<td></td>
+				</tr>
+            </tfoot>
 
+		</table>
+	{% else %}
+		<p class="mx-auto text-center">
+			votre panier est vide
+		</p>
+	{% endif %}
+</div>
 {% endblock %}
