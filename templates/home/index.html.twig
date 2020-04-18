@@ -3,17 +3,30 @@
 {% block title %}{{ controller_name }}
 {% endblock %}
 
+
 {% block body %}
 
-	<div class="container-fluid">
-		<div class="container text-center">
-			<div class="jumbotron mt-5">
-				<h1>{{ controller_name }}!</h1>
-				<p class="lead">
+<style>
+    .bg-home{
+        background-image: url('../img/bg-home.jpg');
+        background-size: cover;
+    }
+
+    .jumbotron{
+        background-color : rgba(0, 0, 0, 0.75);
+    }
+</style>
+
+
+	<div class="container-fluid bg-home p-5">
+		<div class="container text-center p-5">
+			<div class="jumbotron m-4">
+				<h1 class="text-light">{{ controller_name }}!</h1>
+				<p class="lead text-light">
 					Bienvenue sur le site Click And Buy !
 				</p>
 
-				<p>Vous trouverez ici un grand choix de rien du tout a prix défiant toute concurence !</br>
+				<p class="text-light">Vous trouverez ici un grand choix de rien du tout a prix défiant toute concurence !</br>
 			    votre bonheur se trouve ici !</p>
 
                 {# Séparateur #}
@@ -21,15 +34,15 @@
                 class="my-5">
 
                 {# Bouton accès a la boutique  #}
-                <p class="lead">
-                    <a href="{{ path('shop') }}" class="btn btn-primary btn-lg" role="button">
+                <p class="lead text-light">
+                    <a href="{{ path('shop') }}" class="btn btn-dark btn-lg" role="button">
                         <i class="fas fa-info-circle"></i>
-                        Dépenser mon argent !
+                        Visiter la boutique
                     </a>
                 </p>
 	        </div>
         </div>
     </div>
-    
+
 
 {% endblock %}
