@@ -1,22 +1,75 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-dark">
-	<a class="navbar-brand text-light font-weight-bold" href="{{ path('home') }}">Click'N'Buy</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-dark px-5">
+	<a class="navbar-brand text-light font-weight-bold ml-3" href="{{ path('home') }}">Click'N'Buy</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>
 
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
-		<ul class="navbar-nav mr-auto">
-			<li class="nav-item">
-				<a class="nav-link" href="{{ path('shop') }}">La boutique
+		<ul class="navbar-nav mx-auto text-light">
+
+			<li class="nav-item mx-2">
+				<a class="nav-link text-light font-weight-bold" href="{{ path('presentation') }}">qui sommes-nous ?
 				</a>
 			</li>
+
+			<li class="nav-item mx-2">
+				<a class="nav-link text-light font-weight-bold" href="{{ path('shop') }}">La boutique !
+				</a>
+			</li>
+
+			<li class="nav-item mx-2">
+				<a class="nav-link text-light font-weight-bold" href="{{ path('shop') }}">contact
+				</a>
+			</li>
+
 		</ul>
-		<form class="form-inline my-2 my-lg-0">
+
+
+		<ul
+			class="navbar-nav text-light mr-3">
+
+
 			{# <input class="form-control mr-sm-2 border-none" type="search" placeholder="Search" aria-label="Search"> #}
-			<button class="btn border-none my-2 my-sm-0" type="submit"><i class="fas fa-search fa-lg text-light"></i></button>
-			<a href="{{ path('cart') }}" class="btn border-none my-2 my-sm-0" type="submit"><i class="fas fa-shopping-bag fa-lg text-light"></i></a>
+			<li class="nav-item dropdown">
+				<a class="btn border-none my-2 my-sm-0 nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<i class="fas fa-plus fa-lg text-light"></i>
+				</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="{{ path('presentation') }}">Qui sommes-nous ?</a>
+					<a class="dropdown-item" href="{{ path('contact') }}">Contact</a>
 
-		</form>
+					<div class="dropdown-divider"></div>
 
+					{% if app.user == null %}
+						<a class="dropdown-item" href="{{ path('admin_login') }}">connexion Admin</a>
+						<a class="dropdown-item" href="{{ path('client_login') }}">connexion Client</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="{{ path('client_register') }}">Inscrivez-vous</a>
+					{% endif %}
+
+					{% if app.user %}
+
+						{% if app.user.username == 'admin' %}
+							<a class="dropdown-item" href="{{ path('admin_logout') }}">deconnexion Admin</a>
+						{% endif %}
+
+						{% if app.user.username == 'client' %}
+							<a class="dropdown-item" href="{{ path('client_logout') }}">deconnexion client</a>
+						{% endif %}
+					{% endif %}
+
+				</div>
+			</li>
+
+
+			<button class="btn border-none my-2 my-sm-0" type="submit">
+				<i class="fas fa-search fa-lg text-light"></i>
+			</button>
+
+			<a href="{{ path('cart') }}" class="btn border-none my-2 my-sm-0" type="submit">
+				<i class="fas fa-shopping-bag fa-lg text-light"></i>
+			</a>
+
+		</ul>
 	</div>
 </nav>
