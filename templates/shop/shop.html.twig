@@ -16,34 +16,36 @@
 			</p>
 
 
-			{% for article in articles %}
-				<div class="un-article jumbotron p-0 row">
-
-					<img src="{{ article.image }}" alt="image article" class="image-preview col-3 p-0" width="285" height="250">
-
-					<div class="text-center p-5 d-flex flex-column col-9 justify-content-between">
-						<h3 class="mb-3">
-							{{ article.title }}
-						</h3>
-
-						<p class="mb-3">
-							{{ article.introduction }}
-						</p>
-
-						<p class="mb-3">
-							{{ article.price }}
-							€ !
-						</p>
-						<div class="row">
-							<a href="{{ path('fiche_produit', {'id': article.id }) }}" class="btn w-25 mx-auto btn-primary active" role="button">En savoir plus ?</a>
-							<a href="{{ path('cart_add', {'id': article.id }) }}" class="btn w-25 mx-auto btn-success active" role="button">
-								<i class="fas fa-cart-plus"></i>
-							</a>
-						</div>
+			{# <div class="card" style="width: 18rem;">
+				<img src="{{ article.image }}" class="card-img-top" alt="{{ article.title }}">
+				<div class="card-body">
+					<h5 class="card-title">{{ article.title }}</h5>
+					<p class="card-text">{{ article.introduction }}</p>
+					<div class="row">
+						<a href="{{ path('fiche_produit', {'id': article.id }) }}" class="btn w-25 mx-auto btn-primary active" role="button">En savoir plus ?</a>
+						<a href="{{ path('cart_add', {'id': article.id }) }}" class="btn w-25 mx-auto btn-success active" role="button">
 					</div>
-
 				</div>
+			</div> #}
 
+
+			{% for article in articles %}
+
+
+	
+			<div class="card" style="width: 18rem;">
+				<img src="{{ article.image }}" class="card-img-top" alt="{{ article.title }}">
+				<div class="card-body">
+					<h5 class="card-title">{{ article.title }}</h5>
+					<p class="card-text">{{ article.introduction }}</p>
+					<p class=""> {{ article.price }}€ </p>
+					<div class="row w-100">
+						<a href="{{ path('fiche_produit', {'id': article.id }) }}" class="btn w-25 mx-auto btn-primary active" role="button">En savoir plus ?</a>
+						<a href="{{ path('cart_add', {'id': article.id }) }}" class="btn w-25 mx-auto btn-success active" role="button"><i class="fas fa-cart-plus"></i>
+							</a>
+					</div>
+				</div>
+			</div>
 			{% endfor %}
 
 
