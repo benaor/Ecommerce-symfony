@@ -17,38 +17,38 @@
 
 
 			{# <div class="card" style="width: 18rem;">
-				<img src="{{ article.image }}" class="card-img-top" alt="{{ article.title }}">
-				<div class="card-body">
-					<h5 class="card-title">{{ article.title }}</h5>
-					<p class="card-text">{{ article.introduction }}</p>
-					<div class="row">
-						<a href="{{ path('fiche_produit', {'id': article.id }) }}" class="btn w-25 mx-auto btn-primary active" role="button">En savoir plus ?</a>
-						<a href="{{ path('cart_add', {'id': article.id }) }}" class="btn w-25 mx-auto btn-success active" role="button">
+							<img src="{{ article.image }}" class="card-img-top" alt="{{ article.title }}">
+							<div class="card-body">
+								<h5 class="card-title">{{ article.title }}</h5>
+								<p class="card-text">{{ article.introduction }}</p>
+								<div class="row">
+									<a href="{{ path('fiche_produit', {'id': article.id }) }}" class="btn w-25 mx-auto btn-primary active" role="button">En savoir plus ?</a>
+									<a href="{{ path('cart_add', {'id': article.id }) }}" class="btn w-25 mx-auto btn-success active" role="button">
+								</div>
+							</div>
+						</div> #}
+
+			<div class="row justify-content-between">
+				{% for article in articles %}
+					<div class="card my-5" style="width: 18rem;">
+						<img src="{{ article.image }}" class="card-img-top image-preview" alt="{{ article.title }}">
+						<div class="card-body">
+							<h5 class="card-title">{{ article.title }}</h5>
+							<p class="card-text">{{ article.introduction }}</p>
+							<p class="font-weight-bold">
+								{{ article.price }}€
+							</p>
+							<div class="row">
+								<a href="{{ path('fiche_produit', {'id': article.id }) }}" class="btn mx-auto btn-primary" role="button">En savoir plus ?</a>
+								<a href="{{ path('cart_add', {'id': article.id }) }}" class="btn mx-auto btn-success active" role="button">
+									<i class="fas fa-cart-plus"></i> 
+								</a>
+							</div>
+						</div>
 					</div>
-				</div>
-			</div> #}
+				{% endfor %}
 
-
-			{% for article in articles %}
-
-
-	
-			<div class="card" style="width: 18rem;">
-				<img src="{{ article.image }}" class="card-img-top" alt="{{ article.title }}">
-				<div class="card-body">
-					<h5 class="card-title">{{ article.title }}</h5>
-					<p class="card-text">{{ article.introduction }}</p>
-					<p class=""> {{ article.price }}€ </p>
-					<div class="row w-100">
-						<a href="{{ path('fiche_produit', {'id': article.id }) }}" class="btn w-25 mx-auto btn-primary active" role="button">En savoir plus ?</a>
-						<a href="{{ path('cart_add', {'id': article.id }) }}" class="btn w-25 mx-auto btn-success active" role="button"><i class="fas fa-cart-plus"></i>
-							</a>
-					</div>
-				</div>
 			</div>
-			{% endfor %}
-
-
 		</div>
 	</div>
 
