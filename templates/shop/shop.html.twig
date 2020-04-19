@@ -5,28 +5,18 @@
 {% endblock %}
 
 {% block body %}
+<style>
+.page{
+	background: #e9ecef;
+}
+</style>
 
-	<div class="container-fluid">
-		<div class="container text-center">
-			<div class="jumbotron mt-5">
+	<div class="container-fluid p-5">
+		<div class="container text-center p-5">
 				<h1>{{ controller_name }}!</h1>
-			</div>
 			<p class="lead">
-				Voici la liste de tous nos articles
+				Qu'est-ce qui vous ferais plaisir ?
 			</p>
-
-
-			{# <div class="card" style="width: 18rem;">
-							<img src="{{ article.image }}" class="card-img-top" alt="{{ article.title }}">
-							<div class="card-body">
-								<h5 class="card-title">{{ article.title }}</h5>
-								<p class="card-text">{{ article.introduction }}</p>
-								<div class="row">
-									<a href="{{ path('fiche_produit', {'id': article.id }) }}" class="btn w-25 mx-auto btn-primary active" role="button">En savoir plus ?</a>
-									<a href="{{ path('cart_add', {'id': article.id }) }}" class="btn w-25 mx-auto btn-success active" role="button">
-								</div>
-							</div>
-						</div> #}
 
 			<div class="row justify-content-between">
 				{% for article in articles %}
